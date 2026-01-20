@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .                 # <-- this tells Compose how to build the image
+    image: yolov8-api:latest # <-- and this names the resulting image
+    env_file: .env
+    environment:
+      - YOLO_CONFIG_DIR=/tmp/Ultralytics
+    ports:
+      - "8000:8000"
+    stop_grace_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 2g
